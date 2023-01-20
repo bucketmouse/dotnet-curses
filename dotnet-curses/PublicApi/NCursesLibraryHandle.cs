@@ -13,9 +13,9 @@ namespace Mindmagma.Curses.Interop
 {
     internal static class NCursesLibraryHandle
     {
-        internal static NativeLibrary lib = FindLibrary();
+        internal static NativeLibraryLoader.NativeLibrary lib = FindLibrary();
 
-        private static NativeLibrary FindLibrary()
+        private static NativeLibraryLoader.NativeLibrary FindLibrary()
         {
             var defaults = new CursesLibraryNames();
             var custom = GetCustomLibraryNames();
@@ -71,7 +71,7 @@ namespace Mindmagma.Curses.Interop
                 throw new Exception("Unsupported OSPlatform, can't locate ncurses library.");
             }
 
-            return new NativeLibrary(names.ToArray());
+            return new NativeLibraryLoader.NativeLibrary(names.ToArray());
         }
 
         private static CursesLibraryNames GetCustomLibraryNames()
